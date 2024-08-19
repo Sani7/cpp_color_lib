@@ -150,6 +150,7 @@ class Color {
     std::string to_hex() const;
 
     bool operator==(const Color &color) const;
+    bool operator!=(const Color &color) const;
   private:
     uint32_t p_color;
 };

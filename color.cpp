@@ -389,3 +389,7 @@ std::string Color::to_hex() const {
 bool Color::operator==(const Color &color) const {
     return p_color == color.p_color;
 }
+
+bool Color::operator!=(const Color &color) const {
+    return p_color != color.p_color;
+}
