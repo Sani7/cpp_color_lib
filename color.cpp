@@ -23,20 +23,20 @@
  */
 #include "color.hpp"
 
-Color::Color() : p_color(0) {
+Color::Color() : m_color(0) {
 }
 
 Color::Color(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha)
     : Color((red << 24) | (green << 16) | (blue << 8) | alpha) {
 }
-Color::Color(uint32_t color) : p_color(color) {
+Color::Color(uint32_t color) : m_color(color) {
 }
 
 Color::Color(std::string hex) {
     if (hex.length() == 6) {
         hex = hex + "FF";
     }
-    p_color = (uint32_t)std::stoul(hex, nullptr, 16);
+    m_color = (uint32_t)std::stoul(hex, nullptr, 16);
 }
 
 Color::Color(Colors color) {
@@ -345,55 +345,55 @@ Color::Color(Colors color) {
 }
 
 uint32_t Color::color() const {
-    return p_color;
+    return m_color;
 }
 
 uint8_t Color::red() const {
-    return (uint8_t)((p_color >> 24) & 0xFF);
+    return (uint8_t)((m_color >> 24) & 0xFF);
 }
 
 uint8_t Color::green() const {
-    return (uint8_t)((p_color >> 16) & 0xFF);
+    return (uint8_t)((m_color >> 16) & 0xFF);
 }
 
 uint8_t Color::blue() const {
-    return (uint8_t)((p_color >> 8) & 0xFF);
+    return (uint8_t)((m_color >> 8) & 0xFF);
 }
 
 uint8_t Color::alpha() const {
-    return p_color & 0xFF;
+    return m_color & 0xFF;
 }
 
 void Color::set_color(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha) {
-    this->p_color = (red << 24) | (green << 16) | (blue << 8) | alpha;
+    this->m_color = (red << 24) | (green << 16) | (blue << 8) | alpha;
 }
 
 void Color::set_red(uint8_t color) {
-    p_color = (color << 24) | (p_color & 0x00FFFFFF);
+    m_color = (color << 24) | (m_color & 0x00FFFFFF);
 }
 
 void Color::set_green(uint8_t color) {
-    p_color = (color << 16) | (p_color & 0xFF00FFFF);
+    m_color = (color << 16) | (m_color & 0xFF00FFFF);
 }
 
 void Color::set_blue(uint8_t color) {
-    p_color = (color << 8) | (p_color & 0xFFFF00FF);
+    m_color = (color << 8) | (m_color & 0xFFFF00FF);
 }
 
 void Color::set_alpha(uint8_t color) {
-    p_color = color | (p_color & 0xFFFFFF00);
+    m_color = color | (m_color & 0xFFFFFF00);
 }
 
 std::string Color::to_hex() const {
     char buffer[11];
-    snprintf(buffer, 11, "0x%08X", p_color);
+    snprintf(buffer, 11, "0x%08X", m_color);
     return std::string(buffer);
 }
 
 bool Color::operator==(const Color &color) const {
-    return p_color == color.p_color;
+    return m_color == color.m_color;
 }
 
 bool Color::operator!=(const Color &color) const {
-    return p_color != color.p_color;
+    return m_color != color.m_color;
 }

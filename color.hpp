@@ -153,5 +153,5 @@ class Color {
     bool operator==(const Color &color) const;
     bool operator!=(const Color &color) const;
   private:
-    uint32_t p_color;
+    uint32_t m_color;
 };
