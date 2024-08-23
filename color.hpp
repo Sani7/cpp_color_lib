@@ -131,7 +131,7 @@ class Color {
         Dark_Yellow
     };
     Color();
-    Color(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha = 0);
+    Color(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha = 0xFF);
     Color(uint32_t color);
     Color(Colors color);
     Color(std::string hex);

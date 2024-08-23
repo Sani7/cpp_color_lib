@@ -34,7 +34,7 @@ Color::Color(uint32_t color) : p_color(color) {
 
 Color::Color(std::string hex) {
     if (hex.length() == 6) {
-        hex = "FF" + hex;
+        hex = hex + "FF";
     }
     p_color = (uint32_t)std::stoul(hex, nullptr, 16);
 }
