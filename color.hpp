@@ -142,6 +142,7 @@ class Color {
     uint8_t blue() const;
     uint8_t alpha() const;
 
+    void set_color(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha = 0xFF);
     void set_red(uint8_t color);
     void set_green(uint8_t color);
     void set_blue(uint8_t color);
