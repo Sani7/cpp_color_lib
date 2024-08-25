@@ -130,6 +130,11 @@ class Color {
         Yellow_Green,
         Dark_Yellow
     };
+
+    enum hex_type {
+        HEX_TYPE_RGB,
+        HEX_TYPE_ARGB
+    };
     Color();
     Color(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha = 0xFF);
     Color(uint32_t color);
@@ -148,7 +153,7 @@ class Color {
     void set_blue(uint8_t color);
     void set_alpha(uint8_t color);
 
-    std::string to_hex() const;
+    std::string to_hex(hex_type type = HEX_TYPE_ARGB) const;
 
     bool operator==(const Color &color) const;
     bool operator!=(const Color &color) const;

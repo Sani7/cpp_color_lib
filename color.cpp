@@ -349,44 +349,48 @@ uint32_t Color::color() const {
 }
 
 uint8_t Color::red() const {
-    return (uint8_t)((m_color >> 24) & 0xFF);
-}
-
-uint8_t Color::green() const {
     return (uint8_t)((m_color >> 16) & 0xFF);
 }
 
-uint8_t Color::blue() const {
+uint8_t Color::green() const {
     return (uint8_t)((m_color >> 8) & 0xFF);
 }
 
-uint8_t Color::alpha() const {
+uint8_t Color::blue() const {
     return m_color & 0xFF;
 }
 
+uint8_t Color::alpha() const {
+    return (uint8_t)((m_color >> 24) & 0xFF);
+}
+
 void Color::set_color(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha) {
-    this->m_color = (red << 24) | (green << 16) | (blue << 8) | alpha;
+    this->m_color = (alpha << 24) | (red << 16) | (green << 8) | blue;
 }
 
 void Color::set_red(uint8_t color) {
-    m_color = (color << 24) | (m_color & 0x00FFFFFF);
-}
-
-void Color::set_green(uint8_t color) {
     m_color = (color << 16) | (m_color & 0xFF00FFFF);
 }
 
-void Color::set_blue(uint8_t color) {
-    m_color = (color << 8) | (m_color & 0xFFFF00FF);
+void Color::set_green(uint8_t color) {
+     m_color = (color << 8) | (m_color & 0xFFFF00FF);
 }
 
-void Color::set_alpha(uint8_t color) {
+void Color::set_blue(uint8_t color) {
     m_color = color | (m_color & 0xFFFFFF00);
 }
 
-std::string Color::to_hex() const {
+void Color::set_alpha(uint8_t color) {
+    m_color = (color << 24) | (m_color & 0x00FFFFFF);
+}
+
+std::string Color::to_hex(hex_type type) const {
     char buffer[11];
-    snprintf(buffer, 11, "0x%08X", m_color);
+    if (type == HEX_TYPE_RGB) {
+        snprintf(buffer, 11, "#%06X", m_color & 0xFFFFFF);
+    } else {
+        snprintf(buffer, 11, "#%08X", m_color);
+    }
     return std::string(buffer);
 }
 
