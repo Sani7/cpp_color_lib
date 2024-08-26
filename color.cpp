@@ -33,6 +33,9 @@ Color::Color(uint32_t color) : m_color(color) {
 }
 
 Color::Color(std::string hex) {
+    if (hex[0] == '#') {
+        hex = "0x" + hex.substr(1);
+    }
     if (hex.length() == 6) {
         hex = hex + "FF";
     }
@@ -386,10 +389,19 @@ void Color::set_alpha(uint8_t color) {
 
 std::string Color::to_hex(hex_type type) const {
     char buffer[11];
-    if (type == HEX_TYPE_RGB) {
-        snprintf(buffer, 11, "#%06X", m_color & 0xFFFFFF);
-    } else {
-        snprintf(buffer, 11, "#%08X", m_color);
+    switch (type) {
+        case HEX_TYPE_RGB:
+            snprintf(buffer, 11, "0x%06X", m_color & 0xFFFFFF);
+            break;
+        case HEX_TYPE_ARGB:
+            snprintf(buffer, 11, "0x%08X", m_color);
+            break;
+        case HEX_TYPE_RGB_HASH:
+            snprintf(buffer, 11, "#%06X", m_color & 0xFFFFFF);
+            break;
+        case HEX_TYPE_ARGB_HASH:
+            snprintf(buffer, 11, "#%08X", m_color);
+            break;
     }
     return std::string(buffer);
 }
