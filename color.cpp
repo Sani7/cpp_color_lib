@@ -27,7 +27,7 @@ Color::Color() : m_color(0) {
 }
 
 Color::Color(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha)
-    : Color((red << 24) | (green << 16) | (blue << 8) | alpha) {
+    : Color((uint32_t)(red << 24) | (uint32_t)(green << 16) | (uint32_t)(blue << 8) | alpha) {
 }
 Color::Color(uint32_t color) : m_color(color) {
 }
@@ -368,15 +368,15 @@ uint8_t Color::alpha() const {
 }
 
 void Color::set_color(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha) {
-    this->m_color = (alpha << 24) | (red << 16) | (green << 8) | blue;
+    this->m_color = (uint32_t)(alpha << 24) | (uint32_t)(red << 16) | (uint32_t)(green << 8) | blue;
 }
 
 void Color::set_red(uint8_t color) {
-    m_color = (color << 16) | (m_color & 0xFF00FFFF);
+    m_color = (uint32_t)(color << 16) | (m_color & 0xFF00FFFF);
 }
 
 void Color::set_green(uint8_t color) {
-    m_color = (color << 8) | (m_color & 0xFFFF00FF);
+     m_color = (uint32_t)(color << 8) | (m_color & 0xFFFF00FF);
 }
 
 void Color::set_blue(uint8_t color) {
@@ -384,7 +384,7 @@ void Color::set_blue(uint8_t color) {
 }
 
 void Color::set_alpha(uint8_t color) {
-    m_color = (color << 24) | (m_color & 0x00FFFFFF);
+    m_color = (uint32_t)(color << 24) | (m_color & 0x00FFFFFF);
 }
 
 std::string Color::to_hex(hex_type type) const {
