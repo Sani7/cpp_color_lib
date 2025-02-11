@@ -11,6 +11,7 @@ target_compile_options(Color PRIVATE $<$<CONFIG:Debug>:
 target_sources(Color
   PRIVATE
     ${CMAKE_CURRENT_LIST_DIR}/color.cpp 
+    ${CMAKE_CURRENT_LIST_DIR}/color.hpp
 )
 
 target_include_directories(Color

@@ -352,6 +352,9 @@ Color::Color(Colors color)
     case Colors::Dark_Yellow:
         set_color(0x99, 0xCC, 0x32);
         break;
+    case Colors::Default:
+        set_color(0x83, 0x91, 0x92);
+        break;
     }
 }
 

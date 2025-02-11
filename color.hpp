@@ -130,7 +130,8 @@ class Color
         White,
         Yellow,
         Yellow_Green,
-        Dark_Yellow
+        Dark_Yellow,
+        Default
     };
 
     enum hex_type
